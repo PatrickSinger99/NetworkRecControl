@@ -13,6 +13,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     s.sendall(b"space")
     pyautogui.hotkey('alt', 'x')
-    time.sleep(137*60)
+    time.sleep(3)
     pyautogui.hotkey('alt', 'y')
     s.sendall(b"space")

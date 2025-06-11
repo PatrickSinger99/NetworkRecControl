@@ -15,8 +15,23 @@ def handle_client(conn, addr):
                 break
             command = data.decode().strip()
             print(f"Received: {command}")
-            pyautogui.press(command)
-            print(f"Pressed: {command}")
+
+            if command == "start":
+                screen_width, screen_height = pyautogui.size()  # Get screen size
+
+                # Calculate target position
+                target_x = screen_width - 1  # Most right pixel (0-indexed)
+                target_y = screen_height // 2  # Middle of the screen vertically
+
+                # Move the mouse and click
+                pyautogui.moveTo(target_x, target_y)
+                pyautogui.click(button='left')
+                print("Moved and pressed on mouse")
+
+            else:  # Basic button press
+                pyautogui.press(command)
+                print(f"Pressed: {command}")
+
     except (ConnectionResetError, BrokenPipeError):
         print("Connection lost")
     finally:
